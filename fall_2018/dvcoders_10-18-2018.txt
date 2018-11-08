@@ -1,0 +1,51 @@
+//This is the code displayed by Tem on 10/18/2018 for the buzzer.
+
+
+int buzzer = 12;//the pin of the active buzzer
+
+void setup()
+{
+
+pinMode(buzzer,OUTPUT);//initialize the buzzer pin as an output
+
+}
+
+void loop()
+{
+
+unsigned char i;
+
+while(1)
+{
+  
+   //output an frequency
+  
+   for(i=0;i<80;i++)
+  {
+
+      digitalWrite(buzzer,HIGH);
+//turn on buzzer
+      delay(1);//wait for 1ms
+   //buzz for 1millisecond
+      digitalWrite(buzzer,LOW);
+ //turn off buzzer
+      delay(1);//wait for 1ms
+   //turns off buzzer for 1 millisecond before looping back to the top of loop
+   }
+   
+   //output another frequency
+
+    for(i=0;i<100;i++)
+     {
+     //repeat 80 times
+       digitalWrite(buzzer,HIGH);//turn on buzzer
+       delay(2);//wait for 2ms
+
+       digitalWrite(buzzer,LOW); 
+//turn off buzzer
+       delay(2);		 //turns off buzzer for 1 millisecond before looping back to the top of loop
+	//NOTE:
+	//the longer the delay the deeper the sound note.
+    }
+}
+}
