@@ -1,0 +1,144 @@
+//THESE ARE SNIPPETS OF CODE FOR 10/25/2018
+//see arduino_structure_10-25-2018.docx for arduino structure.
+
+//code for tinker cad buzzer.
+int led = 7;
+int a = 4;
+int b = 2;
+int buzzer = 8;
+
+bool crossing = false;
+int counter = 0;
+bool play = false;
+
+
+const int DEFAULT_COUNTER = 1000;
+
+
+void setup()
+{
+  pinMode(led, OUTPUT);
+  pinMode(a, INPUT);
+  pinMode(b, INPUT);
+  pinMode(buzzer, OUTPUT);
+  
+  digitalWrite(led, LOW);
+  digitalWrite(buzzer, LOW);
+}
+
+void loop()
+{
+  
+  if(crossing)
+  {
+    if(counter % 60 == 0)
+    {
+      if(counter % 120 == 0)
+      {
+        digitalWrite(led, HIGH);
+      }
+      else
+      {
+        digitalWrite(led, LOW);
+      }
+    }
+    
+    
+    /*
+    if(counter % 100 == 0)
+    {
+      play = true;
+    }
+    else if(counter % 100 == 50)
+    {
+      play = false;
+    }
+    */
+    
+    if(counter % 2 == 0)
+    {
+      play = true;
+    }
+    else
+    {
+      play = false;
+    }
+    
+    
+    
+    if(play)
+    {
+      if(counter % 2 == 0)
+      {
+        digitalWrite(buzzer, HIGH);
+      }
+      else
+      {
+        digitalWrite(buzzer, LOW);
+      }
+    }
+    else
+    {
+      digitalWrite(buzzer, LOW);
+    }
+    
+    if(counter-- <= 0)
+    {
+      crossing = false;
+      digitalWrite(led, LOW);
+      digitalWrite(buzzer, LOW);
+    }
+    
+  }
+  else
+  {
+    if(digitalRead(a) == HIGH || digitalRead(b) == HIGH)
+    {
+      crossing = true;
+      counter = DEFAULT_COUNTER;
+    }
+  }
+  
+  
+  delay(3);
+  
+}
+
+//end of tinker cad buzzer
+
+
+//start of tinker cad light switches
+//light can be turned on and off from either switch.
+int led = 2;
+int a = 12;
+int b = 4;
+
+
+void setup()
+{
+  pinMode(led, OUTPUT);
+  pinMode(a, INPUT);
+  pinMode(b, INPUT);
+  
+  digitalWrite(led, LOW);
+}
+
+void loop()
+{
+  
+  if(digitalRead(a) == digitalRead(b))
+  {
+    digitalWrite(led, HIGH);
+  }
+  else
+  {
+    digitalWrite(led, LOW);
+  }
+  
+  delay(100);
+  
+}
+
+
+
+//end of tinker cad light switches
